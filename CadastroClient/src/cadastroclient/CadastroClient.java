@@ -32,15 +32,15 @@ public class CadastroClient {
 
             if (response.equals("Autenticação bem-sucedida. Aguardando comandos...")) {
                 while (true) {
-                    System.out.print("Digite 'L' para listar produtos ou 'S' para sair: ");
+                    System.out.print("Digite 'Listar' para apresentar produtos ou 'Sair' para sair: ");
                     String command = consoleIn.readLine();
                     out.println(command);
 
-                    if (command.equalsIgnoreCase("S")) {
+                    if (command.equalsIgnoreCase("Sair")) {
                         break;
                     }
 
-                    if (command.equalsIgnoreCase("L")) {
+                    if (command.equalsIgnoreCase("Listar")) {
                         // Receba e exiba todos os produtos de uma vez
                         receiveAndDisplayProductList(in);
                     }
@@ -52,7 +52,7 @@ public class CadastroClient {
     }
 
     private static void receiveAndDisplayProductList(BufferedReader in) throws IOException {
-        System.out.println("Conjunto de produtos disponíveis:");
+        System.out.println("Conjunto de produtos");
         String line;
         while ((line = in.readLine()) != null && !line.isEmpty()) {
             System.out.println(line);
