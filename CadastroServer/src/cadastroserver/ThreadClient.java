@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cadastroserver;
 import java.io.ObjectInputStream;
 import java.util.List;
@@ -28,7 +24,7 @@ public class ThreadClient implements Runnable {
                     String mensagem = (String) objetoRecebido;
                     adicionarTexto(mensagem);
                 } else if (objetoRecebido instanceof List) {
-                    // Se o objeto recebido for uma lista, adicione o nome e a quantidade de cada produto ao JTextArea
+                  
                     List<?> listaProdutos = (List<?>) objetoRecebido;
                     for (Object item : listaProdutos) {
                         if (item instanceof String) {
