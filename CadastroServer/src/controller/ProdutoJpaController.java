@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import controller.exceptions.NonexistentEntityException;
@@ -22,7 +18,7 @@ import model.Produto;
 
 /**
  *
- * @author wfeli
+ * @author AlarconAbap
  */
 public class ProdutoJpaController implements Serializable {
 
@@ -106,7 +102,7 @@ public class ProdutoJpaController implements Serializable {
             if (msg == null || msg.length() == 0) {
                 Integer id = produto.getIdProduto();
                 if (findProduto(id) == null) {
-                    throw new NonexistentEntityException("The produto with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("O Produto de id " + id + " não existe.");
                 }
             }
             throw ex;
@@ -127,7 +123,7 @@ public class ProdutoJpaController implements Serializable {
                 produto = em.getReference(Produto.class, id);
                 produto.getIdProduto();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The produto with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("O Produto de id " + id + " não existe.", enfe);
             }
             Collection<Movimentacao> movimentacaoCollection = produto.getMovimentacaoCollection();
             for (Movimentacao movimentacaoCollectionMovimentacao : movimentacaoCollection) {
