@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import java.io.Serializable;
@@ -22,7 +18,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author wfeli
+ * @author AlarconAbap
  */
 @Entity
 @Table(name = "Produto")
@@ -45,7 +41,7 @@ public class Produto implements Serializable {
     private String nome;
     @Column(name = "quantidade")
     private Integer quantidade;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
     @Column(name = "precoVenda")
     private Double precoVenda;
     @OneToMany(mappedBy = "idProduto")
