@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import controller.exceptions.NonexistentEntityException;
@@ -19,7 +15,7 @@ import model.PessoaJuridica;
 
 /**
  *
- * @author wfeli
+ * @author AlarconAbap
  */
 public class PessoaJuridicaJpaController implements Serializable {
 
@@ -82,7 +78,7 @@ public class PessoaJuridicaJpaController implements Serializable {
             if (msg == null || msg.length() == 0) {
                 Integer id = pessoaJuridica.getIdPessoaJuridica();
                 if (findPessoaJuridica(id) == null) {
-                    throw new NonexistentEntityException("The pessoaJuridica with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("A pessoa Juridica " + id + " não existe.");
                 }
             }
             throw ex;
@@ -103,7 +99,7 @@ public class PessoaJuridicaJpaController implements Serializable {
                 pessoaJuridica = em.getReference(PessoaJuridica.class, id);
                 pessoaJuridica.getIdPessoaJuridica();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The pessoaJuridica with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException(""A pessoa Juridica " + id + " não existe."", enfe);
             }
             Pessoa idPessoa = pessoaJuridica.getIdPessoa();
             if (idPessoa != null) {
