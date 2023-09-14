@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import controller.exceptions.IllegalOrphanException;
@@ -24,7 +20,7 @@ import model.Pessoa;
 
 /**
  *
- * @author wfeli
+ * @author Alarcon Abap
  */
 public class PessoaJpaController implements Serializable {
 
@@ -123,7 +119,7 @@ public class PessoaJpaController implements Serializable {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain PessoaJuridica " + pessoaJuridicaCollectionOldPessoaJuridica + " since its idPessoa field is not nullable.");
+                    illegalOrphanMessages.add("Você deve adicionar PessoaJuridica " + pessoaJuridicaCollectionOldPessoaJuridica + " seu id não pode ser apagável.");
                 }
             }
             for (PessoaFisica pessoaFisicaCollectionOldPessoaFisica : pessoaFisicaCollectionOld) {
@@ -131,7 +127,7 @@ public class PessoaJpaController implements Serializable {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain PessoaFisica " + pessoaFisicaCollectionOldPessoaFisica + " since its idPessoa field is not nullable.");
+                    illegalOrphanMessages.add("Você deve adicionar PessoaJuridica " + pessoaFisicaCollectionOldPessoaFisica + " seu id não pode ser apagável.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -204,7 +200,7 @@ public class PessoaJpaController implements Serializable {
             if (msg == null || msg.length() == 0) {
                 Integer id = pessoa.getIdPessoa();
                 if (findPessoa(id) == null) {
-                    throw new NonexistentEntityException("The pessoa with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("A pessoa com id " + id + " não existe.");
                 }
             }
             throw ex;
@@ -225,7 +221,7 @@ public class PessoaJpaController implements Serializable {
                 pessoa = em.getReference(Pessoa.class, id);
                 pessoa.getIdPessoa();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The pessoa with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("A pessoa com id " + id + " não existe.", enfe);
             }
             List<String> illegalOrphanMessages = null;
             Collection<PessoaJuridica> pessoaJuridicaCollectionOrphanCheck = pessoa.getPessoaJuridicaCollection();
@@ -233,14 +229,14 @@ public class PessoaJpaController implements Serializable {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Pessoa (" + pessoa + ") cannot be destroyed since the PessoaJuridica " + pessoaJuridicaCollectionOrphanCheckPessoaJuridica + " in its pessoaJuridicaCollection field has a non-nullable idPessoa field.");
+                illegalOrphanMessages.add("A Pessoa (" + pessoa + ") Não pode ser apagado PessoaJuridica " + pessoaJuridicaCollectionOrphanCheckPessoaJuridica + " em seu campo pessoaJuridicaCollection possui um campo idPessoa não pode ser apagado.");
             }
             Collection<PessoaFisica> pessoaFisicaCollectionOrphanCheck = pessoa.getPessoaFisicaCollection();
             for (PessoaFisica pessoaFisicaCollectionOrphanCheckPessoaFisica : pessoaFisicaCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Pessoa (" + pessoa + ") cannot be destroyed since the PessoaFisica " + pessoaFisicaCollectionOrphanCheckPessoaFisica + " in its pessoaFisicaCollection field has a non-nullable idPessoa field.");
+                illegalOrphanMessages.add("A Pessoa (" + pessoa + ") Não pode ser apagado PessoaJuridica PessoaFisica " + pessoaFisicaCollectionOrphanCheckPessoaFisica + " em seu campo pessoaJuridicaCollection possui um campo idPessoa não pode ser apagado.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
